@@ -189,3 +189,8 @@ void Dialog::on_btnRemoveMail_clicked()
     }
 
 }
+
+void Dialog::on_btnResetMail_clicked()
+{
+     model_->setStringList(QStringList());
+}

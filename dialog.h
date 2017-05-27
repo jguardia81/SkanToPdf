@@ -42,6 +42,8 @@ private slots:
 
     void on_btnRemoveMail_clicked();
 
+    void on_btnResetMail_clicked();
+
 private:
     QList<QImage> images_;
 
