@@ -36,7 +36,7 @@
             <item row="0" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_2">
               <item>
-               <widget class="QLineEdit" name="lineEdit_2">
+               <widget class="QLineEdit" name="txtPathToFolder">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                   <horstretch>1</horstretch>
@@ -52,7 +52,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="btnSearchDir">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -80,7 +80,7 @@
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QLineEdit" name="lineEdit">
+             <widget class="QLineEdit" name="txtFileName">
               <property name="sizePolicy">
                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                 <horstretch>1</horstretch>
@@ -113,14 +113,14 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_7">
+             <widget class="QPushButton" name="btnSave">
               <property name="text">
                <string>Sauvegarder</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_6">
+             <widget class="QPushButton" name="btnReset">
               <property name="text">
                <string>Remise à zéro</string>
               </property>
@@ -136,7 +136,7 @@
          <property name="title">
           <string>Destinataires</string>
          </property>
-         <widget class="QListView" name="listView">
+         <widget class="QListView" name="lswMail">
           <property name="geometry">
            <rect>
             <x>59</x>
@@ -146,7 +146,7 @@
            </rect>
           </property>
          </widget>
-         <widget class="QPushButton" name="pushButton_5">
+         <widget class="QPushButton" name="btnResetMail">
           <property name="geometry">
            <rect>
             <x>322</x>
@@ -165,7 +165,7 @@
            <string>R.a.z</string>
           </property>
          </widget>
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="btnAddMail">
           <property name="geometry">
            <rect>
             <x>322</x>
@@ -184,7 +184,7 @@
            <string>+</string>
           </property>
          </widget>
-         <widget class="QPushButton" name="pushButton_4">
+         <widget class="QPushButton" name="btnRemoveMail">
           <property name="geometry">
            <rect>
             <x>322</x>
@@ -275,7 +275,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="btnClose">
        <property name="text">
         <string>Fermer</string>
        </property>

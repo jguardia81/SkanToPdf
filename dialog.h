@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QList>
 #include <QImage>
+#include <QPrinter>
 namespace Ui {
 class Dialog;
 }
@@ -28,9 +29,20 @@ private slots:
                         int  	format
                         );
 
+    void on_btnClose_clicked();
+
+    void on_btnSearchDir_clicked();
+
+    void on_btnReset_clicked();
+
+    void on_btnSave_clicked();
+
 private:
     QList<QImage> images_;
 
+    void setupPrinter(QPrinter &printer, const QString &pathToPdfFile);
+    void printPages(QPrinter &printer, const QString& file, const QString& folder);
+    QString createFileUrl(const QString &file, const QString &folder);
 };
 
 #endif // DIALOG_H
