@@ -17,7 +17,11 @@ Dialog::Dialog(QWidget *parent) :
     ui->setupUi(this);
     prepare();
 
+    model_ = new QStringListModel(this);
+
+    ui->lswMail->setModel(model_);
     connect (ui->scanWidget, &KSaneIface::KSaneWidget::imageReady, this,  &Dialog::onImageReady );
+    ui->lswMail->setSelectionMode(QAbstractItemView::MultiSelection);
 }
 
 Dialog::~Dialog()
@@ -50,30 +54,6 @@ void Dialog::onImageReady(QByteArray &data, int width, int height, int bytes_per
     images_.append(qimage);
 }
 
-//QPrinter printer;
-//    printer.setOutputFormat(QPrinter::PdfFormat);
-//    printer.setOutputFileName("/home/jean/visu.pdf");
-//    QPrinter::Margins margins;
-//    margins.bottom = 0.0;
-//    margins.top =0.0;
-//    margins.left = 0.0;
-//    margins.right =0.0;
-//    printer.setMargins(margins);
-//    printer.setFullPage(true);
-//    QPageLayout layout = printer.pageLayout();
-//    layout.setMode(QPageLayout::FullPageMode);
-//    printer.setPageLayout(layout);
-
-//    QPainter painter;
-
-//    painter.begin(&printer);
-
-//    painter.drawText(10,10,"Mon texte imprimé");
-//    painter.drawImage(0,0,qimage);
-//    painter.end();
-
-
-//}
 
 void Dialog::on_btnClose_clicked()
 {
@@ -99,6 +79,8 @@ void Dialog::on_btnReset_clicked()
     if (response == QMessageBox::Yes) {
         images_.clear();
         ui->txtFileName->setText("");
+        model_->setStringList(QStringList());
+
     }
 }
 
@@ -180,4 +162,30 @@ void Dialog::on_btnSave_clicked()
     setupPrinter(printer,pathToPdfFile );
 
     printPages(printer, file, folder);
+}
+
+void Dialog::on_btnAddMail_clicked()
+{
+    model_->insertRow(model_->rowCount());
+    QModelIndex modelIndex = model_->index(model_->rowCount()-1);
+
+    ui->lswMail->edit(modelIndex);
+}
+
+
+void Dialog::on_btnRemoveMail_clicked()
+{
+    QModelIndexList indexlist = ui->lswMail->selectionModel()->selectedRows();
+    QList<int> ints;
+    for (QModelIndex index : indexlist) {
+       ints.append(index.row());
+    }
+
+
+    std::sort(ints.begin(),ints.end(),[](int i,int j) {return i>j;});
+
+    for (int val : ints) {
+        model_->removeRow(val);
+    }
+
 }

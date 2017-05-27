@@ -5,6 +5,7 @@
 #include <QList>
 #include <QImage>
 #include <QPrinter>
+#include <QStringListModel>
 namespace Ui {
 class Dialog;
 }
@@ -37,12 +38,18 @@ private slots:
 
     void on_btnSave_clicked();
 
+    void on_btnAddMail_clicked();
+
+    void on_btnRemoveMail_clicked();
+
 private:
     QList<QImage> images_;
 
     void setupPrinter(QPrinter &printer, const QString &pathToPdfFile);
     void printPages(QPrinter &printer, const QString& file, const QString& folder);
     QString createFileUrl(const QString &file, const QString &folder);
+
+    QStringListModel* model_ = nullptr;
 };
 
 #endif // DIALOG_H
