@@ -14,9 +14,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        dialog.cpp
+        dialog.cpp \
+    configuredialog.cpp
 
-HEADERS  += dialog.h
+HEADERS  += dialog.h \
+    configuredialog.h
 
-FORMS    += dialog.ui
+FORMS    += dialog.ui \
+    configuredialog.ui
 LIBS += -lKF5Sane

@@ -10,11 +10,13 @@
 #include <QMessageBox>
 
 
+#include "configuredialog.h"
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
+    appSettings_ = new QSettings("home","SkanToPdf",this);
     prepare();
 
     model_ = new QStringListModel(this);
@@ -193,4 +195,24 @@ void Dialog::on_btnRemoveMail_clicked()
 void Dialog::on_btnResetMail_clicked()
 {
      model_->setStringList(QStringList());
+}
+
+void Dialog::on_btnConfigure_clicked()
+{
+    QString name = "";
+    QString mail = "";
+    name = appSettings_->value("UserName", "").toString();
+    mail = appSettings_->value("UserMail","").toString();
+
+    ConfigureDialog confDialog(name,mail,this);
+
+    int result = confDialog.exec();
+
+    if (result == QDialog::Accepted) {
+        confDialog.retrieveData(name,mail);
+
+        appSettings_->setValue("UserName",name);
+        appSettings_->setValue("UserMail",mail);
+    }
+
 }

@@ -6,6 +6,7 @@
 #include <QImage>
 #include <QPrinter>
 #include <QStringListModel>
+#include <QSettings>
 namespace Ui {
 class Dialog;
 }
@@ -44,6 +45,8 @@ private slots:
 
     void on_btnResetMail_clicked();
 
+    void on_btnConfigure_clicked();
+
 private:
     QList<QImage> images_;
 
@@ -52,6 +55,7 @@ private:
     QString createFileUrl(const QString &file, const QString &folder);
 
     QStringListModel* model_ = nullptr;
+    QSettings *appSettings_= nullptr;
 };
 
 #endif // DIALOG_H
