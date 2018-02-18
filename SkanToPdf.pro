@@ -15,11 +15,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         dialog.cpp \
-    configuredialog.cpp
+    configuredialog.cpp \
+    scannedimagedisplay.cpp
 
 HEADERS  += dialog.h \
-    configuredialog.h
+    configuredialog.h \
+    scannedimagedisplay.h
 
 FORMS    += dialog.ui \
-    configuredialog.ui
+    configuredialog.ui \
+    scannedimagedisplay.ui
 LIBS += -lKF5Sane

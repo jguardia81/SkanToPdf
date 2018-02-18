@@ -56,6 +56,7 @@ private:
 
     QStringListModel* model_ = nullptr;
     QSettings *appSettings_= nullptr;
+    void showImage(const QImage * const qimage);
 };
 
 #endif // DIALOG_H

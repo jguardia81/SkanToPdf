@@ -8,9 +8,11 @@
 
 #include <QFileDialog>
 #include <QMessageBox>
-
-
+#include <QWindow>
+#include <QHBoxLayout>
+#include "scannedimagedisplay.h"
 #include "configuredialog.h"
+
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)
@@ -54,6 +56,7 @@ void Dialog::onImageReady(QByteArray &data, int width, int height, int bytes_per
     qimage = ui->scanWidget->toQImage(data,width,height,bytes_per_line,(KSaneIface::KSaneWidget::ImageFormat) format);
 
     images_.append(qimage);
+    //showImage(&qimage);
 }
 
 
@@ -106,13 +109,15 @@ void Dialog::setupPrinter(QPrinter& printer, const QString& pathToPdfFile )
 void Dialog::printPages(QPrinter& printer, const QString &file, const QString &folder)
 {
     QPainter painter;
+    QRectF pageRect;
     painter.begin(&printer);
 
+    printer.setPageSize(QPagedPaintDevice::A4);
     for (int index = 0; index < images_.count(); ++index) {
         if (index != 0) {
             printer.newPage();
         }
-        painter.drawImage(0,0,images_.at(index));
+        painter.drawImage(printer.pageRect(),images_.at(index));
     }
     painter.end();
     QMessageBox::information(this,"Sauvegarde", file + " a été sauvegardé dans le dossier: " + folder );
@@ -215,4 +220,10 @@ void Dialog::on_btnConfigure_clicked()
         appSettings_->setValue("UserMail",mail);
     }
 
+}
+
+void Dialog::showImage(const QImage * const qimage) {
+   ScannedImageDisplay *scannedImagePreview = new ScannedImageDisplay(this);
+   scannedImagePreview->displayImaqe(qimage);
+   scannedImagePreview->show();
 }
